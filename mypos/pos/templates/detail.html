@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Customer Invoice - POS System</title>
+{% endblock %}
+
+
+{% for item in items %}
+    {{item.id}}
+{% endfor %}

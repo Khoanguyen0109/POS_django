@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Dashboard - POS System</title>
+{% endblock %}
+
+{% block content %}
+  <h3 class="text-center">Dashboard</h3>
+  <div class="card">
+    <div class="card-header">
+      <h5>Admin</h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text">Clicking on the button below will lead you to the admin section.</p>
+      <a href="/admin" class="btn btn-primary">ADMIN</a>
+    </div>
+  </div>
+  </div>
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-header">
+        <h5>Billing</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Clicking on the button below will lead you to the billing section.</p>
+        <a href="{% url 'billing' %}" class="btn btn-primary">Start Billing</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h5>Invoice Generation</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Clicking on the button below will lead you to the invoice generation section.</p>
+        <a href="{% url 'invoice_dashboard' %}" class="btn btn-primary">Generate Invoice</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h5>Inventory</h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text">Clicking on the button below will lead you to the inventory section.</p>
+      <a href="{% url 'inventory' %}" class="btn btn-primary">Inventory</a>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h5>Export</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Clicking on the button below will lead you to the export section.</p>
+    <a href="{% url 'exporting' %}" class="btn btn-primary">Export</a>
+  </div>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h5>Import</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Clicking on the button below will lead you to the Import section.</p>
+    <a href="{% url 'importing' %}" class="btn btn-primary">Import</a>
+  </div>
+</div>
+</div>
+{% endblock %}

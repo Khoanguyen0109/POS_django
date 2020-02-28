@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Import Complete - POS System</title>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+  {% if success %}
+  <div class="alert alert-success" role="alert">
+    <h2 class="alert-heading">Import Successful</h2>
+    <a class="btn btn-primary" href="{% url 'importing' %}" role="button">Continue</a>
+  </div>
+  {% else %}
+  <div class="alert alert-danger" role="alert">
+    <h2 class="alert-heading">Import Failed!</h2>
+    <a class="btn btn-primary" href="{% url 'importing' %}" role="button">Continue</a>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

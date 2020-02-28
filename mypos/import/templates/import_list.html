@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title> {{name}} - Billing </title>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<h1> Import Storage {{storage.name_storage}} </h1>
+
+
+<div class="card">
+  <div class="card-body">
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Enter ID Product: </span>
+      </div>
+      <input class="form-control" type="name" name="name_of_import_list" placeholder="Name of Import list" id='namelist' />
+      
+    </div>
+  </div>
+  <script>
+    var namelist = document.getElementById('namelist').value;
+  </script>
+  <br>
+  <br>
+<div class="card">
+  <div class="card-body">
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Enter ID Product: </span>
+      </div>
+      <input class="form-control" type="ID" name="ID" placeholder=" ID" id='sinput' />
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" id='ssubmit' onclick="getProduct()">Go
+          &raquo;</button>
+      </div>
+    </div>
+    <!-- lấy ID từ input trả về bảng  -->
+  </div>
+  
+  <script>
+    var arr_id = [];
+    var arr_name = [];
+    var arr_size = [];
+
+  </script>
+  {% for p in products %}
+  <script>
+    arr_id.push({{ p.id_product }})
+    arr_name.push("{{p.name_product}}")
+    arr_size.push({{ p.size }});
+
+  </script>
+  {% endfor %}
+
+  <p id="t">
+
+  </p>
+
+  <script>
+
+
+
+    function getProduct() {
+      var input = document.getElementById("sinput").value;
+      var get = false;
+      for (i = 0; i < arr_id.length; i++) {
+        if (input == arr_id[i]) {
+          document.getElementById("t").innerHTML = arr_id[i];
+          addItem3(arr_id[i], arr_name[i], arr_size[i]);
+          get = true;
+        }
+
+      }
+      if (get == false) {
+        alert("không có sản phẩm")
+      }
+
+    }
+  </script>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"><strong>Export list summary</strong></h4>
+              </div>
+              <div class="panel-body">
+
+                <table id="myTable" class="table" width="100%" border="1" cellspacing="0" cellpadding="5"
+                  style="background-color: white">
+                  <thead>
+
+                    <td style="width:150px;text-align: center;background-color: #00FFFF;"><b>Mã Sản Phẩm</b></td>
+                    <td style="max-width:180px;text-align: center;background-color: #00FFFF;"><b>Tên Sản Phẩm</b></td>
+                    <td style="width:70px;max-width:100px;text-align: center;background-color: #00FFFF;"><b>Size</b>
+                    </td>
+
+
+
+
+                  </thead>
+                  <tbody id="summary-table-body">
+                    <tr id="total-tr">
+                      <td class="thick-line text-right"><strong>Total: </strong></td>
+                      <td class="thick-line text-right"><strong>0 </strong></td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-group special" role="group">
+          {% csrf_token %}
+          <button type="button" id="done" class="btn btn-success"
+            onclick="postExport('{% url 'import_' %}','{{storage.id_storage}}',document.getElementById('namelist').value)" >Done</button>
+          <button type="button" class="btn" onclick="clearAllItems()">Clear</button>
+          <button type="button" class="btn btn-danger" onclick="location.href='{% url 'importing' %}'">Cancel</button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/script2.js' %}"></script>
+{% endblock %}

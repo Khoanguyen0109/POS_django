@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Customer Invoice - POS System</title>
+{% endblock %}
+
+{% block content %}
+<h3 class="text-center no-print">Generate Customer Invoice</h3>
+<div class="card no-print">
+	<div class="card-body">
+
+	</div>
+</div>
+
+
+<div class="card-body">
+	<div class="table-responsive">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<td><strong>Bill No.</strong></td>
+					<td class="text-center"><strong>Date</strong></td>
+					<td class="text-right"><strong>Total Price</strong></td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+				<tr>
+					<td id ="id_bill">#{{ order.id }}</td>
+
+					<td class="text-right">₹{{ order.total_payment }}</td>
+					<td>
+						<a href="detail.html/?bill_id={{order.id}}" class="btn btn-warning btn-sm" role="button">Detail</a>
+					</td>
+				</tr>
+				
+				{% endfor %}
+				<tr>
+					<td class="thick-line"></td>
+					<td class="thick-line text-center"><strong>Total</strong></td>
+					<td class="thick-line text-right">₹{{ total }}</td>
+				</tr>
+				
+
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
